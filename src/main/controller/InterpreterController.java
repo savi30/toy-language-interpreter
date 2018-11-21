@@ -6,6 +6,10 @@ import main.model.statement.Statement;
 import main.model.util.ExecutionStack;
 import main.repository.Repository;
 
+import java.util.Collection;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class InterpreterController {
     private Repository repository;
     private boolean showLog = true;
@@ -40,11 +44,25 @@ public class InterpreterController {
         while (true) {
             try {
                 executeStep(programState);
+                collectGarbage(programState);
             } catch (EmptyExecutionStackException e) {
                 System.out.println(e.getMessage());
                 return;
             }
         }
+    }
+
+    private Map<Integer, Integer> conservativeGarbageCollector(Collection<Integer> symTableValues,
+                                                               Map<Integer, Integer> heap) {
+        return heap.entrySet().stream()
+                .filter(e -> symTableValues.contains(e.getKey()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    private void collectGarbage(ProgramState programState) {
+        programState
+                .getHeap()
+                .setContent(conservativeGarbageCollector(programState.getSymTable().values(), programState.getHeap()));
     }
 
     public boolean shouldShowLog() {

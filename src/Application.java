@@ -5,12 +5,10 @@ import main.model.command.FinishProgram;
 import main.model.command.RunStep;
 import main.model.expression.ArithmeticExpression;
 import main.model.expression.ConstantExpression;
+import main.model.expression.ReadHeap;
 import main.model.expression.VariableExpression;
 import main.model.statement.*;
-import main.model.util.ExecutionStackImpl;
-import main.model.util.FileTableImpl;
-import main.model.util.OutputImpl;
-import main.model.util.SymTableImpl;
+import main.model.util.*;
 import main.repository.Repository;
 import main.repository.RepositoryImpl;
 import main.view.TextMenu;
@@ -82,11 +80,36 @@ public class Application {
                                         new PrintStatement(new ConstantExpression(0))),
                                 new CloseRFile(new VariableExpression("var_f")))));
 
+        Statement example4 = new CompoundStatement(
+                new CompoundStatement(
+                        new CompoundStatement(
+                                new AssignmentStatement("v", new ConstantExpression(10)),
+                                new New("v", new ConstantExpression(20))
+                        ),
+                        new CompoundStatement(
+                                new New("a", new ConstantExpression(22)),
+                                new WriteHeap("a", new ConstantExpression(30))
+                        )
+                ),
+                new CompoundStatement(
+                        new CompoundStatement(
+                                new PrintStatement(
+                                        new VariableExpression("a")
+                                ),
+                                new PrintStatement(
+                                        new ReadHeap("a")
+                                )),
+                        new AssignmentStatement("a", new ConstantExpression((0)))
+                )
+        );
+
+
         ProgramState programState = new ProgramState(new ExecutionStackImpl<>(),
                 new OutputImpl<>(),
                 new SymTableImpl<>(),
                 new FileTableImpl<>(),
-                example3);
+                new HeapImpl(),
+                example4);
         controller.setInitialProgramState(programState);
     }
 }

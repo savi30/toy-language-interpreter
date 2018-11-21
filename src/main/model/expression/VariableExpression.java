@@ -12,7 +12,7 @@ public class VariableExpression implements Expression {
     }
 
     @Override
-    public int evaluate(Map<String, Integer> symTable) {
+    public int evaluate(Map<String, Integer> symTable, Map<Integer, Integer> heap) {
         if (symTable.containsKey(variable)) {
             return symTable.get(variable);
         }

@@ -10,7 +10,7 @@ public class ConstantExpression implements Expression {
     }
 
     @Override
-    public int evaluate(Map<String, Integer> symTable) {
+    public int evaluate(Map<String, Integer> symTable, Map<Integer, Integer> heap) {
         return this.value;
     }
 

@@ -6,6 +6,7 @@ public class OutputImpl<T> extends Output<T> {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Output:\n");
         Iterator iterator = iterator();
         while (iterator.hasNext()) {
             stringBuilder

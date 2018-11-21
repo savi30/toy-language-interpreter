@@ -17,9 +17,9 @@ public class ArithmeticExpression implements Expression {
         this.operator = operator;
     }
 
-    public int evaluate(Map<String, Integer> symTable) {
-        int a = this.expression1.evaluate(symTable);
-        int b = this.expression2.evaluate(symTable);
+    public int evaluate(Map<String, Integer> symTable, Map<Integer, Integer> heap) {
+        int a = this.expression1.evaluate(symTable, heap);
+        int b = this.expression2.evaluate(symTable, heap);
 
         switch (this.operator) {
             case '+':

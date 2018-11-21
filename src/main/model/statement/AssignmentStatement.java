@@ -16,7 +16,7 @@ public class AssignmentStatement implements Statement {
     @Override
     public ProgramState execute(ProgramState ps) {
         SymTable<String, Integer> symTable = ps.getSymTable();
-        symTable.put(this.variable, this.expression.evaluate(symTable));
+        symTable.put(this.variable, this.expression.evaluate(ps.getSymTable(), ps.getHeap()));
         return ps;
     }
 

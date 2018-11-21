@@ -1,0 +1,172 @@
+Program state:
+SymTable:
+
+Execution stack:
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+
+Output:
+
+File table:
+{}
+{}
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+--------------------------------------------------
+
+
+Program state:
+SymTable:
+
+Execution stack:
+(print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870)))
+((v = 10, new(v ,20)), new(a ,22))
+
+Output:
+
+File table:
+{}
+{}
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+--------------------------------------------------
+
+
+Program state:
+SymTable:
+
+Execution stack:
+(print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870)))
+new(a ,22)
+(v = 10, new(v ,20))
+
+Output:
+
+File table:
+{}
+{}
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+--------------------------------------------------
+
+
+Program state:
+SymTable:
+
+Execution stack:
+(print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870)))
+new(a ,22)
+new(v ,20)
+v = 10
+
+Output:
+
+File table:
+{}
+{}
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+--------------------------------------------------
+
+
+Program state:
+SymTable:
+v=10
+
+Execution stack:
+(print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870)))
+new(a ,22)
+new(v ,20)
+
+Output:
+
+File table:
+{}
+{}
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+--------------------------------------------------
+
+
+Program state:
+SymTable:
+v=1
+
+Execution stack:
+(print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870)))
+new(a ,22)
+
+Output:
+
+File table:
+{}
+{1=20}
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+--------------------------------------------------
+
+
+Program state:
+SymTable:
+a=2
+v=1
+
+Execution stack:
+(print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870)))
+
+Output:
+
+File table:
+{}
+{1=20, 2=22}
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+--------------------------------------------------
+
+
+Program state:
+SymTable:
+a=2
+v=1
+
+Execution stack:
+print((100+main.model.expression.ReadHeap@5f341870))
+print((100+main.model.expression.ReadHeap@42d80b78))
+
+Output:
+
+File table:
+{}
+{1=20, 2=22}
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+--------------------------------------------------
+
+
+Program state:
+SymTable:
+a=2
+v=1
+
+Execution stack:
+print((100+main.model.expression.ReadHeap@5f341870))
+
+Output:
+120
+
+File table:
+{}
+{1=20, 2=22}
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+--------------------------------------------------
+
+
+Program state:
+SymTable:
+a=2
+v=1
+
+Execution stack:
+
+Output:
+122
+120
+
+File table:
+{}
+{1=20, 2=22}
+(((v = 10, new(v ,20)), new(a ,22)), (print((100+main.model.expression.ReadHeap@42d80b78)), print((100+main.model.expression.ReadHeap@5f341870))))
+--------------------------------------------------
+
+
