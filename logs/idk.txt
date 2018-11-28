@@ -1,89 +1,266 @@
-Program state:Execution stack:((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))
-SymTable:Output:File table{}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+
+Execution stack:
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:(print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f)))
-(openRFile(var_f, test.txt), ReadFile(var_f, a))
-SymTable:Output:File table{}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+
+Execution stack:
+(while((v-4)) do {(print(v), v = (v-1))}, print(v))
+v = 6
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:(print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f)))
-ReadFile(var_f, a)
-openRFile(var_f, test.txt)
-SymTable:Output:File table{}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=6
+
+Execution stack:
+(while((v-4)) do {(print(v), v = (v-1))}, print(v))
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:(print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f)))
-ReadFile(var_f, a)
-SymTable:var_f=0
-Output:File table{0=test.txt=java.io.BufferedReader@2038ae61}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=6
+
+Execution stack:
+print(v)
+while((v-4)) do {(print(v), v = (v-1))}
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:(print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f)))
-SymTable:a=1
-var_f=0
-Output:File table{0=test.txt=java.io.BufferedReader@2038ae61}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=6
+
+Execution stack:
+print(v)
+while((v-4)) do {(print(v), v = (v-1))}
+(print(v), v = (v-1))
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:(if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))
-print(a)
-SymTable:a=1
-var_f=0
-Output:File table{0=test.txt=java.io.BufferedReader@2038ae61}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=6
+
+Execution stack:
+print(v)
+while((v-4)) do {(print(v), v = (v-1))}
+v = (v-1)
+print(v)
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:(if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))
-SymTable:a=1
-var_f=0
-Output:1
-File table{0=test.txt=java.io.BufferedReader@2038ae61}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=6
+
+Execution stack:
+print(v)
+while((v-4)) do {(print(v), v = (v-1))}
+v = (v-1)
+
+Output:
+6
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:CloseFile(var_f)
-if(a) then((ReadFile(var_f, a), print(a))) else(print(0))
-SymTable:a=1
-var_f=0
-Output:1
-File table{0=test.txt=java.io.BufferedReader@2038ae61}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=5
+
+Execution stack:
+print(v)
+while((v-4)) do {(print(v), v = (v-1))}
+
+Output:
+6
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:CloseFile(var_f)
-(ReadFile(var_f, a), print(a))
-SymTable:a=1
-var_f=0
-Output:1
-File table{0=test.txt=java.io.BufferedReader@2038ae61}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=5
+
+Execution stack:
+print(v)
+while((v-4)) do {(print(v), v = (v-1))}
+(print(v), v = (v-1))
+
+Output:
+6
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:CloseFile(var_f)
-print(a)
-ReadFile(var_f, a)
-SymTable:a=1
-var_f=0
-Output:1
-File table{0=test.txt=java.io.BufferedReader@2038ae61}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=5
+
+Execution stack:
+print(v)
+while((v-4)) do {(print(v), v = (v-1))}
+v = (v-1)
+print(v)
+
+Output:
+6
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:CloseFile(var_f)
-print(a)
-SymTable:a=2
-var_f=0
-Output:1
-File table{0=test.txt=java.io.BufferedReader@2038ae61}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=5
+
+Execution stack:
+print(v)
+while((v-4)) do {(print(v), v = (v-1))}
+v = (v-1)
+
+Output:
+5
+6
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:CloseFile(var_f)
-SymTable:a=2
-var_f=0
-Output:2
-1
-File table{0=test.txt=java.io.BufferedReader@2038ae61}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=4
+
+Execution stack:
+print(v)
+while((v-4)) do {(print(v), v = (v-1))}
+
+Output:
+5
+6
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 
-Program state:Execution stack:SymTable:a=2
-var_f=0
-Output:2
-1
-File table{}{}((openRFile(var_f, test.txt), ReadFile(var_f, a)), (print(a), (if(a) then((ReadFile(var_f, a), print(a))) else(print(0)), CloseFile(var_f))))--------------------------------------------------
+Program state:
+SymTable:
+v=4
+
+Execution stack:
+print(v)
+
+Output:
+5
+6
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
+
+
+Program state:
+SymTable:
+v=4
+
+Execution stack:
+
+Output:
+4
+5
+6
+
+File table:
+{}
+Heap:
+{}
+(v = 6, (while((v-4)) do {(print(v), v = (v-1))}, print(v)))
+--------------------------------------------------
 
 

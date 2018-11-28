@@ -9,4 +9,6 @@ public abstract class FileTable<K, E> extends HashMap<K, E> {
     public static Integer getId() {
         return INSTANCE_COUNT++;
     }
+
+    public abstract void setContent(HashMap<K, E> newTable);
 }

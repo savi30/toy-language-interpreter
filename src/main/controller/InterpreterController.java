@@ -6,6 +6,7 @@ import main.model.statement.Statement;
 import main.model.util.ExecutionStack;
 import main.repository.Repository;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -48,6 +49,14 @@ public class InterpreterController {
             } catch (EmptyExecutionStackException e) {
                 System.out.println(e.getMessage());
                 return;
+            }finally {
+                programState.getFileTable().values().forEach(pair -> {
+                    try {
+                        pair.getValue().close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
             }
         }
     }

@@ -34,82 +34,18 @@ public class Application {
     }
 
     private static void setupProgram() {
-        Statement example1 = new CompoundStatement(
-                new AssignmentStatement("a",
-                        new ArithmeticExpression('+',
-                                new ConstantExpression(2),
-                                new ArithmeticExpression('*',
-                                        new ConstantExpression(3),
-                                        new ConstantExpression(5)))),
-                new CompoundStatement(
-                        new AssignmentStatement("b",
-                                new ArithmeticExpression('+',
-                                        new VariableExpression("a"),
-                                        new ConstantExpression(1))),
-                        new CompoundStatement(
-                                new PrintStatement(new VariableExpression("b")),
-                                new PrintStatement(new VariableExpression("a"))
-                        )));
+        Statement example1 = new CompoundStatement(new AssignmentStatement("a", new ArithmeticExpression('+', new ConstantExpression(2), new ArithmeticExpression('*', new ConstantExpression(3), new ConstantExpression(5)))), new CompoundStatement(new AssignmentStatement("b", new ArithmeticExpression('+', new VariableExpression("a"), new ConstantExpression(1))), new CompoundStatement(new PrintStatement(new VariableExpression("b")), new PrintStatement(new VariableExpression("a")))));
 
-        Statement example2 = new CompoundStatement(
-                new AssignmentStatement("a",
-                        new ArithmeticExpression('-',
-                                new ConstantExpression(2),
-                                new ConstantExpression(2))),
-                new CompoundStatement(
-                        new ConditionalStatement(
-                                new VariableExpression("a"),
-                                new AssignmentStatement("v",
-                                        new ConstantExpression(2)),
-                                new AssignmentStatement("v",
-                                        new ConstantExpression(3))),
-                        new PrintStatement(new VariableExpression("v"))));
+        Statement example2 = new CompoundStatement(new AssignmentStatement("a", new ArithmeticExpression('-', new ConstantExpression(2), new ConstantExpression(2))), new CompoundStatement(new ConditionalStatement(new VariableExpression("a"), new AssignmentStatement("v", new ConstantExpression(2)), new AssignmentStatement("v", new ConstantExpression(3))), new PrintStatement(new VariableExpression("v"))));
 
-        Statement example3 = new CompoundStatement(
-                new CompoundStatement(
-                        new OpenRFile("var_f", "test.txt"),
-                        new ReadFile(new VariableExpression("var_f"), "a")),
-                new CompoundStatement(
-                        new PrintStatement(new VariableExpression("a")),
-                        new CompoundStatement(
-                                new ConditionalStatement(
-                                        new VariableExpression("a"),
-                                        new CompoundStatement(
-                                                new ReadFile(new VariableExpression("var_f"), "a"),
-                                                new PrintStatement(new VariableExpression("a"))),
-                                        new PrintStatement(new ConstantExpression(0))),
-                                new CloseRFile(new VariableExpression("var_f")))));
+        Statement example3 = new CompoundStatement(new CompoundStatement(new OpenRFile("var_f", "test.txt"), new ReadFile(new VariableExpression("var_f"), "a")), new CompoundStatement(new PrintStatement(new VariableExpression("a")), new CompoundStatement(new ConditionalStatement(new VariableExpression("a"), new CompoundStatement(new ReadFile(new VariableExpression("var_f"), "a"), new PrintStatement(new VariableExpression("a"))), new PrintStatement(new ConstantExpression(0))), new CloseRFile(new VariableExpression("var_f")))));
 
-        Statement example4 = new CompoundStatement(
-                new CompoundStatement(
-                        new CompoundStatement(
-                                new AssignmentStatement("v", new ConstantExpression(10)),
-                                new New("v", new ConstantExpression(20))
-                        ),
-                        new CompoundStatement(
-                                new New("a", new ConstantExpression(22)),
-                                new WriteHeap("a", new ConstantExpression(30))
-                        )
-                ),
-                new CompoundStatement(
-                        new CompoundStatement(
-                                new PrintStatement(
-                                        new VariableExpression("a")
-                                ),
-                                new PrintStatement(
-                                        new ReadHeap("a")
-                                )),
-                        new AssignmentStatement("a", new ConstantExpression((0)))
-                )
-        );
+        Statement example4 = new CompoundStatement(new CompoundStatement(new CompoundStatement(new AssignmentStatement("v", new ConstantExpression(10)), new New("v", new ConstantExpression(20))), new CompoundStatement(new New("a", new ConstantExpression(22)), new WriteHeap("a", new ConstantExpression(30)))), new CompoundStatement(new CompoundStatement(new PrintStatement(new VariableExpression("a")), new PrintStatement(new ReadHeap("a"))), new AssignmentStatement("a", new ConstantExpression((0)))));
+
+        Statement example5 = new CompoundStatement(new AssignmentStatement("v", new ConstantExpression(6)), new CompoundStatement(new WhileStatement(new ArithmeticExpression('-', new VariableExpression("v"), new ConstantExpression(4)), new CompoundStatement(new PrintStatement(new VariableExpression("v")), new AssignmentStatement("v", new ArithmeticExpression('-', new VariableExpression("v"), new ConstantExpression(1))))), new PrintStatement(new VariableExpression("v"))));
 
 
-        ProgramState programState = new ProgramState(new ExecutionStackImpl<>(),
-                new OutputImpl<>(),
-                new SymTableImpl<>(),
-                new FileTableImpl<>(),
-                new HeapImpl(),
-                example4);
+        ProgramState programState = new ProgramState(new ExecutionStackImpl<>(), new OutputImpl<>(), new SymTableImpl<>(), new FileTableImpl<>(), new HeapImpl(), example5);
         controller.setInitialProgramState(programState);
     }
 }

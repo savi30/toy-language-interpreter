@@ -25,18 +25,17 @@ public class OpenRFile implements Statement {
         FileTable<Integer, Pair<String, BufferedReader>> fileTable = ps.getFileTable();
         fileTable.values()
                 .stream()
-                .filter(value -> value.getKey().equals(this.filename)).findFirst().ifPresentOrElse(value -> {
-            throw new FileAlreadyOpenedException();
-        }, () -> {
-            try {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filename)));
-                Integer id = FileTable.getId();
-                fileTable.put(id, new Pair<>(this.filename, bufferedReader));
-                new AssignmentStatement(this.variable, new ConstantExpression(id)).execute(ps);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        });
+                .filter(value -> value.getKey().equals(this.filename)).findFirst()
+                .ifPresent((value)->{throw new FileAlreadyOpenedException();});
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filename)));
+            Integer id = FileTable.getId();
+            fileTable.put(id, new Pair<>(this.filename, bufferedReader));
+            new AssignmentStatement(this.variable, new ConstantExpression(id)).execute(ps);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         return ps;
     }
 
