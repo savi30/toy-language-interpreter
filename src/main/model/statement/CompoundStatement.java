@@ -16,7 +16,7 @@ public class CompoundStatement implements Statement {
         ExecutionStack<Statement> executionStack = ps.getExecutionStack();
         executionStack.push(statement2);
         executionStack.push(statement1);
-        return ps;
+        return null;
     }
 
     @Override

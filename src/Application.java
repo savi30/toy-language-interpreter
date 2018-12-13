@@ -44,8 +44,16 @@ public class Application {
 
         Statement example5 = new CompoundStatement(new AssignmentStatement("v", new ConstantExpression(6)), new CompoundStatement(new WhileStatement(new ArithmeticExpression('-', new VariableExpression("v"), new ConstantExpression(4)), new CompoundStatement(new PrintStatement(new VariableExpression("v")), new AssignmentStatement("v", new ArithmeticExpression('-', new VariableExpression("v"), new ConstantExpression(1))))), new PrintStatement(new VariableExpression("v"))));
 
+        Statement example6 = new CompoundStatement(new AssignmentStatement("v", new ConstantExpression(10)),
+                new CompoundStatement(new New("a", new ConstantExpression(22)),
+                        new CompoundStatement(new ForkStatement(new CompoundStatement(new WriteHeap("a", new ConstantExpression(30)),
+                                new CompoundStatement(new AssignmentStatement("v", new ConstantExpression(32)),
+                                        new CompoundStatement(new PrintStatement(new VariableExpression("v")),
+                                                new PrintStatement(new ReadHeap("a")))))),
+                                new CompoundStatement(new PrintStatement(new VariableExpression("v")),
+                                        new PrintStatement(new ReadHeap("a"))))));
 
-        ProgramState programState = new ProgramState(new ExecutionStackImpl<>(), new OutputImpl<>(), new SymTableImpl<>(), new FileTableImpl<>(), new HeapImpl(), example5);
+        ProgramState programState = new ProgramState(new ExecutionStackImpl<>(), new OutputImpl<>(), new SymTableImpl<>(), new FileTableImpl<>(), new HeapImpl(), example6, 1);
         controller.setInitialProgramState(programState);
     }
 }

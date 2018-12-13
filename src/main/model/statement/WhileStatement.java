@@ -19,7 +19,7 @@ public class WhileStatement implements Statement {
             ps.getExecutionStack().push(this);
             ps.getExecutionStack().push(statement);
         }
-        return ps;
+        return null;
     }
 
     @Override

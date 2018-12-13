@@ -16,7 +16,7 @@ public class PrintStatement implements Statement {
     public ProgramState execute(ProgramState ps) {
         Output<Integer> output = ps.getOutput();
         output.addFirst(expression.evaluate(ps.getSymTable(), ps.getHeap()));
-        return ps;
+        return null;
     }
 
     @Override

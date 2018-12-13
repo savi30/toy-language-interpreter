@@ -6,6 +6,7 @@ import main.model.util.*;
 
 import java.io.BufferedReader;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 
 public class ProgramState {
     private ExecutionStack<Statement> executionStack = new ExecutionStackImpl<>();
@@ -14,18 +15,21 @@ public class ProgramState {
     private FileTable<Integer, Pair<String, BufferedReader>> fileTable = new FileTableImpl<>();
     private Heap<Integer, Integer> heap = new HeapImpl();
     private Statement program;
+    private Integer id;
 
     public ProgramState(ExecutionStack<Statement> executionStack,
                         Output<Integer> output,
                         SymTable<String, Integer> symTable,
                         FileTable<Integer, Pair<String, BufferedReader>> fileTable,
                         Heap<Integer, Integer> heap,
-                        Statement program) {
+                        Statement program, Integer id) {
         this.executionStack = executionStack;
         this.symTable = symTable;
         this.output = output;
         this.fileTable = fileTable;
         this.program = program;
+        this.heap = heap;
+        this.id = id;
         executionStack.push(program);
     }
 
@@ -77,10 +81,32 @@ public class ProgramState {
         this.heap = heap;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public boolean isComplete() {
+        return this.executionStack.isEmpty();
+    }
+
+    public ProgramState oneStep() {
+        try {
+            return executionStack.pop().execute(this);
+        } catch (EmptyStackException e) {
+            System.out.print(e.getMessage());
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return new StringBuilder()
-                .append("Program state:")
+                .append("Program state ")
+                .append(this.id)
                 .append("\n")
                 .append(symTable.toString())
                 .append("\n")

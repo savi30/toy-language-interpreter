@@ -29,7 +29,7 @@ public class ReadFile implements Statement {
                 e.printStackTrace();
             }
         }
-        return ps;
+        return null;
     }
 
     @Override

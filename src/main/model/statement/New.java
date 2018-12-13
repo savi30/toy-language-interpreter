@@ -21,7 +21,7 @@ public class New implements Statement {
         Heap<Integer, Integer> heap = ps.getHeap();
         int address = heap.allocate(expression.evaluate(ps.getSymTable(), ps.getHeap()));
         new AssignmentStatement(variable, new ConstantExpression(address)).execute(ps);
-        return ps;
+        return null;
     }
 
     @Override

@@ -25,7 +25,7 @@ public class CloseRFile implements Statement {
                 e.printStackTrace();
             }
         }
-        return ps;
+        return null;
     }
 
     @Override

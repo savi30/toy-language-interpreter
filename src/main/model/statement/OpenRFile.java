@@ -36,7 +36,7 @@ public class OpenRFile implements Statement {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return ps;
+        return null;
     }
 
     @Override

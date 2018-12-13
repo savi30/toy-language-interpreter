@@ -20,7 +20,7 @@ public class WriteHeap implements Statement {
             throw new UndefinedVariableException();
         }
         ps.getHeap().put(address, expression.evaluate(ps.getSymTable(), ps.getHeap()));
-        return ps;
+        return null;
     }
 
     @Override

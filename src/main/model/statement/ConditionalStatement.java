@@ -25,7 +25,7 @@ public class ConditionalStatement implements Statement {
         } else {
             executionStack.push(statement2);
         }
-        return ps;
+        return null;
     }
 
     @Override

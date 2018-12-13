@@ -12,6 +12,10 @@ public class RunStep extends Command {
 
     @Override
     public void execute() {
-        controller.executeOneStep();
+        try {
+            controller.executeOneStepForAllPrograms(controller.getRepository().getProgramStates());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

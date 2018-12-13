@@ -1,0 +1,591 @@
+Program state 1
+SymTable:
+
+Execution stack:
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+
+Execution stack:
+(new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a)))))
+v = 10
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+
+Execution stack:
+(new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a)))))
+v = 10
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+v=10
+
+Execution stack:
+(new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a)))))
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+v=10
+
+Execution stack:
+(new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a)))))
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+v=10
+
+Execution stack:
+(main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))
+new(a ,22)
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+v=10
+
+Execution stack:
+(main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))
+new(a ,22)
+
+Output:
+
+File table:
+{}
+Heap:
+{}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(print(v), print(ReadHeap(a)))
+main.model.statement.ForkStatement@6d4b1c02
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(print(v), print(ReadHeap(a)))
+main.model.statement.ForkStatement@6d4b1c02
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(print(v), print(ReadHeap(a)))
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(print(v), print(ReadHeap(a)))
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+print(ReadHeap(a))
+print(v)
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(v = 32, (print(v), print(ReadHeap(a))))
+WriteHeap(a, 30)
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+print(ReadHeap(a))
+print(v)
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(v = 32, (print(v), print(ReadHeap(a))))
+WriteHeap(a, 30)
+
+Output:
+
+File table:
+{}
+Heap:
+{1=22}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+print(ReadHeap(a))
+
+Output:
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(v = 32, (print(v), print(ReadHeap(a))))
+
+Output:
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+print(ReadHeap(a))
+
+Output:
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(v = 32, (print(v), print(ReadHeap(a))))
+
+Output:
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 1
+SymTable:
+a=1
+v=10
+
+Execution stack:
+
+Output:
+30
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(v = 10, (new(a ,22), (main.model.statement.ForkStatement@6d4b1c02, (print(v), print(ReadHeap(a))))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(print(v), print(ReadHeap(a)))
+v = 32
+
+Output:
+30
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=10
+
+Execution stack:
+(print(v), print(ReadHeap(a)))
+v = 32
+
+Output:
+30
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=32
+
+Execution stack:
+(print(v), print(ReadHeap(a)))
+
+Output:
+30
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=32
+
+Execution stack:
+(print(v), print(ReadHeap(a)))
+
+Output:
+30
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=32
+
+Execution stack:
+print(ReadHeap(a))
+print(v)
+
+Output:
+30
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=32
+
+Execution stack:
+print(ReadHeap(a))
+print(v)
+
+Output:
+30
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=32
+
+Execution stack:
+print(ReadHeap(a))
+
+Output:
+32
+30
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=32
+
+Execution stack:
+print(ReadHeap(a))
+
+Output:
+32
+30
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+
+Program state 10
+SymTable:
+a=1
+v=32
+
+Execution stack:
+
+Output:
+30
+32
+30
+10
+
+File table:
+{}
+Heap:
+{1=30}
+(WriteHeap(a, 30), (v = 32, (print(v), print(ReadHeap(a)))))
+--------------------------------------------------
+

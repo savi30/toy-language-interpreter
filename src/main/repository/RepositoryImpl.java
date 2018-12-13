@@ -3,42 +3,44 @@ package main.repository;
 import main.model.ProgramState;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class RepositoryImpl implements Repository {
     private String logFilePath;
-    private ProgramState currentProgram;
+    private List<ProgramState> programStates = new ArrayList<>();
 
     public RepositoryImpl() {
     }
 
-    public RepositoryImpl(ProgramState programState) {
-        this.currentProgram = programState;
+    public RepositoryImpl(List<ProgramState> programState) {
+        this.programStates = programState;
     }
 
-    public RepositoryImpl(ProgramState programState, String logFilePath) {
-        this.currentProgram = programState;
+    public RepositoryImpl(List<ProgramState> programState, String logFilePath) {
+        this.programStates = programState;
         this.logFilePath = logFilePath;
     }
 
     @Override
-    public ProgramState getCurrentProgram() {
-        return currentProgram;
+    public List<ProgramState> getProgramStates() {
+        return this.programStates;
     }
 
     @Override
-    public void serCurrentProgram(ProgramState programState) {
-        this.currentProgram = programState;
+    public void setProgramStates(List<ProgramState> programStates) {
+        this.programStates = programStates;
     }
 
     @Override
-    public void logProgramState() {
+    public void logProgramState(ProgramState programState) {
         if (logFilePath == null) {
             this.logFilePath = initLogPath();
         }
         try (PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(logFilePath, true)))) {
-            writer.println(currentProgram.toString());
+            writer.print(programState);
             writer.print(System.lineSeparator());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
