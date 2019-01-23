@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RepositoryImpl implements Repository {
-    private String logFilePath;
+    private String logFilePath = "log.txt";
     private List<ProgramState> programStates = new ArrayList<>();
 
     public RepositoryImpl() {

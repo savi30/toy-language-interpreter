@@ -23,8 +23,7 @@ public class ForkStatement implements Statement {
                 newSymTable,
                 ps.getFileTable(),
                 ps.getHeap(),
-                statement,
-                ps.getId() * 10
+                statement
         );
     }
 }

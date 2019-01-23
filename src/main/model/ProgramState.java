@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class ProgramState {
+    private static int nextID = 1;
+
     private ExecutionStack<Statement> executionStack = new ExecutionStackImpl<>();
     private Output<Integer> output = new OutputImpl<>();
     private SymTable<String, Integer> symTable = new SymTableImpl<>();
@@ -22,14 +24,14 @@ public class ProgramState {
                         SymTable<String, Integer> symTable,
                         FileTable<Integer, Pair<String, BufferedReader>> fileTable,
                         Heap<Integer, Integer> heap,
-                        Statement program, Integer id) {
+                        Statement program) {
         this.executionStack = executionStack;
         this.symTable = symTable;
         this.output = output;
         this.fileTable = fileTable;
         this.program = program;
         this.heap = heap;
-        this.id = id;
+        this.id = ProgramState.nextID++;
         executionStack.push(program);
     }
 
