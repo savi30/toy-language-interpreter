@@ -15,7 +15,7 @@ public class WhileStatement implements Statement {
 
     @Override
     public ProgramState execute(final ProgramState ps) {
-        if (expression.evaluate(ps.getSymTable(), ps.getHeap()) != 0) {
+        if (expression.evaluate(ps.getSymTableStack().peek(), ps.getHeap()) != 0) {
             ps.getExecutionStack().push(this);
             ps.getExecutionStack().push(statement);
         }

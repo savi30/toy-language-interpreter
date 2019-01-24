@@ -1,49 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="843.0"
-          prefWidth="937.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="main.controller.GUIController">
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="843.0" prefWidth="937.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.GUIController">
     <children>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="890.0" prefWidth="937.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="590.0" layoutY="67.0" prefHeight="32.0"
-                       prefWidth="178.0" text="Heap Table"/>
-                <TableView fx:id="heapTable" layoutX="488.0" layoutY="99.0" prefHeight="178.0" prefWidth="404.0"/>
-                <ListView fx:id="output" layoutX="475.0" layoutY="344.0" prefHeight="179.0" prefWidth="407.0"/>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="590.0" layoutY="297.0" prefHeight="32.0"
-                       prefWidth="178.0" text="Output"/>
-                <TableView fx:id="fileTable" layoutX="54.0" layoutY="99.0" prefHeight="178.0" prefWidth="404.0"/>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="167.0" layoutY="67.0" prefHeight="32.0"
-                       prefWidth="178.0" text="File Table"/>
-                <TableView fx:id="symbolTable" layoutX="54.0" layoutY="344.0" prefHeight="178.0" prefWidth="404.0"/>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="167.0" layoutY="297.0" prefHeight="32.0"
-                       prefWidth="178.0" text="Symbol Table"/>
-                <Button fx:id="oneStep" layoutX="386.0" layoutY="788.0" mnemonicParsing="false"
-                        onAction="#executeOneStep" prefHeight="41.0" prefWidth="166.0" text="Run one step"/>
-                <ListView fx:id="programStates" layoutX="53.0" layoutY="591.0" onMouseClicked="#onProgramSelected"
-                          prefHeight="179.0" prefWidth="407.0"/>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="541.0" prefHeight="32.0"
-                       prefWidth="178.0" text="Program States:"/>
-                <TextField fx:id="NrProgramStates" layoutX="257.0" layoutY="544.0"/>
-                <ListView fx:id="exeStack" layoutX="476.0" layoutY="591.0" prefHeight="179.0" prefWidth="407.0"/>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="601.0" layoutY="541.0" prefHeight="32.0"
-                       prefWidth="178.0" text="Execution Stack"/>
-                <AnchorPane layoutX="375.0" layoutY="14.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="374.0"
-                            AnchorPane.topAnchor="10.0">
+            <TableView fx:id="procTable" layoutX="55.0" layoutY="622.0" prefHeight="157.0" prefWidth="407.0" />
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="590.0" layoutY="67.0" prefHeight="32.0" prefWidth="178.0" text="Heap Table" />
+                <TableView fx:id="heapTable" layoutX="488.0" layoutY="99.0" prefHeight="121.0" prefWidth="404.0" />
+                <ListView fx:id="output" layoutX="476.0" layoutY="264.0" prefHeight="134.0" prefWidth="407.0" />
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="592.0" layoutY="232.0" prefHeight="32.0" prefWidth="178.0" text="Output" />
+                <TableView fx:id="fileTable" layoutX="54.0" layoutY="99.0" prefHeight="121.0" prefWidth="404.0" />
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="167.0" layoutY="67.0" prefHeight="32.0" prefWidth="178.0" text="File Table" />
+                <TableView fx:id="symbolTable" layoutX="55.0" layoutY="264.0" prefHeight="134.0" prefWidth="404.0" />
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="232.0" prefHeight="32.0" prefWidth="178.0" text="Symbol Table" />
+                <Button fx:id="oneStep" layoutX="386.0" layoutY="788.0" mnemonicParsing="false" onAction="#executeOneStep" prefHeight="41.0" prefWidth="166.0" text="Run one step" />
+                <ListView fx:id="programStates" layoutX="54.0" layoutY="472.0" onMouseClicked="#onProgramSelected" prefHeight="134.0" prefWidth="407.0" />
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="422.0" prefHeight="32.0" prefWidth="178.0" text="Program States:" />
+                <TextField fx:id="NrProgramStates" layoutX="257.0" layoutY="425.0" />
+                <ListView fx:id="exeStack" layoutX="476.0" layoutY="472.0" prefHeight="134.0" prefWidth="407.0" />
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="601.0" layoutY="422.0" prefHeight="32.0" prefWidth="178.0" text="Execution Stack" />
+                <AnchorPane layoutX="375.0" layoutY="14.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="10.0">
                     <children>
-                        <ComboBox id="AvailablePrograms" fx:id="availablePrograms" editable="true" prefHeight="25.0"
-                                  prefWidth="188.0" promptText="Programs"/>
+                        <ComboBox id="AvailablePrograms" fx:id="availablePrograms" editable="true" prefHeight="25.0" prefWidth="188.0" promptText="Programs" />
                     </children>
                 </AnchorPane>
             </children>
         </AnchorPane>
     </children>
     <columnConstraints>
-        <ColumnConstraints/>
+        <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints/>
+        <RowConstraints />
     </rowConstraints>
 </GridPane>

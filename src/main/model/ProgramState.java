@@ -7,30 +7,35 @@ import main.model.util.*;
 import java.io.BufferedReader;
 import java.util.Arrays;
 import java.util.EmptyStackException;
+import java.util.List;
+import java.util.Stack;
 
 public class ProgramState {
     private static int nextID = 1;
 
     private ExecutionStack<Statement> executionStack = new ExecutionStackImpl<>();
     private Output<Integer> output = new OutputImpl<>();
-    private SymTable<String, Integer> symTable = new SymTableImpl<>();
+    private Stack<SymTable<String, Integer>> symTableStack = new Stack<>();
     private FileTable<Integer, Pair<String, BufferedReader>> fileTable = new FileTableImpl<>();
     private Heap<Integer, Integer> heap = new HeapImpl();
+    private ProcTable<String, Pair<List<String>, Statement>> procTable = new ProcTableImpl<>();
     private Statement program;
     private Integer id;
 
     public ProgramState(ExecutionStack<Statement> executionStack,
                         Output<Integer> output,
-                        SymTable<String, Integer> symTable,
+                        Stack<SymTable<String, Integer>> symTableStack,
                         FileTable<Integer, Pair<String, BufferedReader>> fileTable,
                         Heap<Integer, Integer> heap,
+                        ProcTable<String, Pair<List<String>, Statement>> procTable,
                         Statement program) {
         this.executionStack = executionStack;
-        this.symTable = symTable;
+        this.symTableStack = symTableStack;
         this.output = output;
         this.fileTable = fileTable;
         this.program = program;
         this.heap = heap;
+        this.procTable = procTable;
         this.id = ProgramState.nextID++;
         executionStack.push(program);
     }
@@ -51,12 +56,12 @@ public class ProgramState {
         this.output = output;
     }
 
-    public SymTable<String, Integer> getSymTable() {
-        return symTable;
+    public Stack<SymTable<String, Integer>> getSymTableStack() {
+        return symTableStack;
     }
 
-    public void setSymTable(SymTable<String, Integer> symTable) {
-        this.symTable = symTable;
+    public void setSymTableStack(Stack<SymTable<String, Integer>> symTableStack) {
+        this.symTableStack = symTableStack;
     }
 
     public Statement getProgram() {
@@ -110,7 +115,7 @@ public class ProgramState {
                 .append("Program state ")
                 .append(this.id)
                 .append("\n")
-                .append(symTable.toString())
+                .append(symTableStack.toString())
                 .append("\n")
                 .append(executionStack.toString())
                 .append("\n")
@@ -130,5 +135,14 @@ public class ProgramState {
         char[] separator = new char[50];
         Arrays.fill(separator, '-');
         return String.valueOf(separator) + "\n";
+    }
+
+    public ProcTable<String, Pair<List<String>, Statement>> getProcTable() {
+        return procTable;
+    }
+
+    public void setProcTable(
+            ProcTable<String, Pair<List<String>, Statement>> procTable) {
+        this.procTable = procTable;
     }
 }

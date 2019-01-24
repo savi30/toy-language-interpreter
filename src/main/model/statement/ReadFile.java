@@ -18,7 +18,7 @@ public class ReadFile implements Statement {
 
     @Override
     public ProgramState execute(ProgramState ps) {
-        Integer id = fileId.evaluate(ps.getSymTable(), ps.getHeap());
+        Integer id = fileId.evaluate(ps.getSymTableStack().peek(), ps.getHeap());
         BufferedReader bufferedReader = ps.getFileTable().get(id).getValue();
         if (bufferedReader != null) {
             try {

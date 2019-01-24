@@ -99,7 +99,7 @@ public class InterpreterController {
         Heap<Integer, Integer> heap = programStates.get(0).getHeap();
         heap.setContent(conservativeGarbageCollector(programStates
                 .stream()
-                .flatMap(p->p.getSymTable().values().stream())
+                .flatMap(p->p.getSymTableStack().peek().values().stream())
                 .collect(Collectors.toList()), heap));
     }
 

@@ -20,7 +20,7 @@ public class ConditionalStatement implements Statement {
     @Override
     public ProgramState execute(ProgramState ps) {
         ExecutionStack<Statement> executionStack = ps.getExecutionStack();
-        if (expression.evaluate(ps.getSymTable(), ps.getHeap()) != 0) {
+        if (expression.evaluate(ps.getSymTableStack().peek(), ps.getHeap()) != 0) {
             executionStack.push(statement1);
         } else {
             executionStack.push(statement2);

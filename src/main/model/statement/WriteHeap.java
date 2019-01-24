@@ -15,11 +15,11 @@ public class WriteHeap implements Statement {
 
     @Override
     public ProgramState execute(ProgramState ps) {
-        Integer address = ps.getSymTable().get(variable);
+        Integer address = ps.getSymTableStack().peek().get(variable);
         if (address == null) {
             throw new UndefinedVariableException();
         }
-        ps.getHeap().put(address, expression.evaluate(ps.getSymTable(), ps.getHeap()));
+        ps.getHeap().put(address, expression.evaluate(ps.getSymTableStack().peek(), ps.getHeap()));
         return null;
     }
 

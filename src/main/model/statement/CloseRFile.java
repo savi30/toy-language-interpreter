@@ -15,7 +15,7 @@ public class CloseRFile implements Statement {
 
     @Override
     public ProgramState execute(ProgramState ps) {
-        int value = fileId.evaluate(ps.getSymTable(), ps.getHeap());
+        int value = fileId.evaluate(ps.getSymTableStack().peek(), ps.getHeap());
         BufferedReader bufferedReader = ps.getFileTable().get(value).getValue();
         if (bufferedReader != null) {
             try {

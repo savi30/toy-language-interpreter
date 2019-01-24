@@ -19,7 +19,7 @@ public class New implements Statement {
     @Override
     public ProgramState execute(ProgramState ps) {
         Heap<Integer, Integer> heap = ps.getHeap();
-        int address = heap.allocate(expression.evaluate(ps.getSymTable(), ps.getHeap()));
+        int address = heap.allocate(expression.evaluate(ps.getSymTableStack().peek(), ps.getHeap()));
         new AssignmentStatement(variable, new ConstantExpression(address)).execute(ps);
         return null;
     }

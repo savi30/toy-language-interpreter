@@ -1,8 +1,6 @@
 package main.controller;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,10 +20,7 @@ import main.repository.RepositoryImpl;
 
 import java.io.BufferedReader;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -51,6 +46,7 @@ public class GUIController implements Initializable {
     @FXML
     public ComboBox<String> availablePrograms;
     @FXML
+    public TableView<Map.Entry<String, Pair<List<String>, Statement>>> procTable;
 
     private InterpreterController controller = new InterpreterController(new RepositoryImpl());
     private List<Statement> statements = new ArrayList<>();
@@ -119,6 +115,67 @@ public class GUIController implements Initializable {
                                                         new PrintStatement(new ReadHeap("a")))))),
                                 new CompoundStatement(new PrintStatement(new VariableExpression("v")),
                                         new PrintStatement(new ReadHeap("a")))))));
+        statements.add(new CompoundStatement(
+                        new AssignmentStatement("v", new ConstantExpression(10)),
+                        new CompoundStatement(
+                                new ForkStatement(
+                                        new CompoundStatement(
+                                                new CompoundStatement(
+                                                        new AssignmentStatement("v",
+                                                                new ArithmeticExpression('-',
+                                                                        new VariableExpression("v"),
+                                                                        new ConstantExpression(1))),
+                                                        new AssignmentStatement("v",
+                                                                new ArithmeticExpression('-',
+                                                                        new VariableExpression("v"),
+                                                                        new ConstantExpression(1)))
+                                                ),
+                                                new PrintStatement(new VariableExpression("v"))
+                                        )
+                                ),
+                                new CompoundStatement(
+                                        new Sleep(10),
+                                        new PrintStatement(
+                                                new ArithmeticExpression('*',
+                                                        new VariableExpression("v"),
+                                                        new ConstantExpression(10))
+                                        ))
+                        )
+                )
+        );
+
+        statements.add(new CompoundStatement(
+                new CompoundStatement(
+                        new AssignmentStatement("v", new ConstantExpression(2)),
+                        new AssignmentStatement("w", new ConstantExpression(5))
+                ),
+                new CompoundStatement(
+                        new Call("sum", Arrays.asList(new ArithmeticExpression(
+                                '*',
+                                new VariableExpression("v"),
+                                new ConstantExpression(10)
+                        ), new VariableExpression("w"))),
+                        new CompoundStatement(
+                                new PrintStatement(new VariableExpression("v")),
+                                new ForkStatement(
+                                        new CompoundStatement(
+                                                new Call("product",
+                                                        Arrays.asList(
+                                                                new VariableExpression("v"),
+                                                                new VariableExpression("w")
+                                                        )),
+                                                new ForkStatement(
+                                                        new Call("sum",
+                                                                Arrays.asList(
+                                                                        new VariableExpression("v"),
+                                                                        new VariableExpression("w")
+                                                                ))
+                                                )
+                                        )
+                                )
+                        )
+                )
+        ));
     }
 
     public void executeOneStep(ActionEvent event) {
@@ -143,12 +200,37 @@ public class GUIController implements Initializable {
     private void loadProgram(String programString) {
         Statement statement = this.statements.stream().filter(s -> s.toString().equals(programString)).findFirst()
                 .get();
+        ProcTable<String, Pair<List<String>, Statement>> procTable = new ProcTableImpl<>();
+        Procedure sum = new Procedure("sum",
+                new Pair<>(Arrays.asList("a", "b"),
+                        new CompoundStatement(
+                                new AssignmentStatement("v",
+                                        new ArithmeticExpression('+',
+                                                new VariableExpression("a"),
+                                                new VariableExpression("b")
+                                        )),
+                                new PrintStatement(new VariableExpression("v"))
+                        )));
+        Procedure product = new Procedure("product",
+                new Pair<>(Arrays.asList("a", "b"),
+                        new CompoundStatement(
+                                new AssignmentStatement("v",
+                                        new ArithmeticExpression('*',
+                                                new VariableExpression("a"),
+                                                new VariableExpression("b")
+                                        )),
+                                new PrintStatement(new VariableExpression("v"))
+                        )));
+        procTable.put(sum.getProcedureName(), sum.getProcedureBody());
+        procTable.put(product.getProcedureName(), product.getProcedureBody());
         ProgramState programState = new ProgramState(new ExecutionStackImpl<>(),
                 new OutputImpl<>(),
-                new SymTableImpl<>(),
+                new Stack<>(),
                 new FileTableImpl<>(),
                 new HeapImpl(),
+                procTable,
                 statement);
+        programState.getSymTableStack().push(new SymTableImpl<>());
         this.controller.setInitialProgramState(programState);
         this.reload(0);
     }
@@ -159,9 +241,11 @@ public class GUIController implements Initializable {
         heapTable.setItems(FXCollections.observableArrayList(currentProgramState.getHeap().entrySet()));
         output.setItems(FXCollections.observableArrayList(currentProgramState.getOutput()));
         fileTable.setItems(FXCollections.observableArrayList(currentProgramState.getFileTable().entrySet()));
-        symbolTable.setItems(FXCollections.observableArrayList(currentProgramState.getSymTable().entrySet()));
+        symbolTable
+                .setItems(FXCollections.observableArrayList(currentProgramState.getSymTableStack().peek().entrySet()));
         programStates.setItems(FXCollections.observableArrayList(controller.getRepository().getProgramStates()));
         exeStack.setItems(FXCollections.observableArrayList(currentProgramState.getExecutionStack()));
+        procTable.setItems(FXCollections.observableArrayList(currentProgramState.getProcTable().entrySet()));
         this.NrProgramStates.textProperty()
                 .setValue(String.valueOf(this.controller.getRepository().getProgramStates().size()));
 
@@ -197,6 +281,22 @@ public class GUIController implements Initializable {
 
         symbolTable.getColumns().addAll(variableNameColumn, varValueColumn);
 
+        TableColumn<Map.Entry<String, Pair<List<String>, Statement>>, String> procNameCol = new TableColumn<>(
+                "Name & params");
+        procNameCol.setCellValueFactory(param -> {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(param.getValue().getKey()).append("(");
+            param.getValue().getValue().getKey().forEach(p->{
+               stringBuilder.append(p).append(", ");
+            });
+            stringBuilder.append(")");
+            return new ReadOnlyObjectWrapper<>(stringBuilder.toString());
+        });
+
+        TableColumn<Map.Entry<String, Pair<List<String>, Statement>>, String> procBodyCol = new TableColumn<>("body");
+        procBodyCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue().getValue().toString()));
+
+        procTable.getColumns().addAll(procNameCol, procBodyCol);
 
         heapTable.setItems(FXCollections.observableArrayList());
         output.setItems(FXCollections.observableArrayList());
